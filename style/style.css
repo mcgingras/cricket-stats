@@ -56,8 +56,19 @@ and (orientation : portrait) {
   }
 
   .scoreboard--base .row{
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .scoreboard--title{
+    text-align: center;
+    width: 50vw;
+  }
+
+  .scoreboard--box{
     border: 1px solid black;
     height: 100px;
+    width: 100%;
   }
 
 }

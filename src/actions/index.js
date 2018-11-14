@@ -14,3 +14,14 @@ export const addPlayerToGame = (username, team) => {
     }
   }
 }
+
+export const updateScore = (hit, team) => {
+  console.log("team "+team+"just hit "+hit);
+  return {
+    type: "UPDATE_SCORE",
+    payload: {
+      team: team,
+      hit: hit
+    }
+  }
+}

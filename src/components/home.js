@@ -38,7 +38,7 @@ class Home extends Component {
         <div className="nav">
           <div className="nav-item" style={{backgroundColor: '#EEE4D3'}}>Dart League</div>
           <a href="/signup"><div className="nav-item">New Player</div></a>
-          <div className="nav-item">New Game</div>
+          <a href="/play"><div className="nav-item">New Game</div></a>
           <div className="nav-item">Stats</div>
         </div>
       </div>
