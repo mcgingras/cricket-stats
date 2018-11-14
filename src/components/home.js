@@ -32,13 +32,12 @@ class Home extends Component {
   }
 
 
-
   render() {
     return (
       <div className="body">
         <div className="nav">
           <div className="nav-item" style={{backgroundColor: '#EEE4D3'}}>Dart League</div>
-          <div className="nav-item" onClick={ (e) => { e.preventDefault(); this.props.addPlayer('michael', 'mcg79')} }>New Player</div>
+          <a href="/signup"><div className="nav-item">New Player</div></a>
           <div className="nav-item">New Game</div>
           <div className="nav-item">Stats</div>
         </div>

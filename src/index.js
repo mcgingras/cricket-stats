@@ -6,6 +6,9 @@ import { createStore, applyMiddleware } from 'redux';
 // Components
 import App from './components/app';
 import Signup from './components/signup';
+import GameContainer from './components/gameContainer';
+import StatsContainer from './components/statsContainer';
+import ScoreBoardContainer from './containers/scoreBoardContainer';
 
 // Reducers
 import reducers from './reducers';
@@ -21,6 +24,9 @@ ReactDOM.render(
       <div>
         <Route path="/" exact component={App} />
         <Route path="/signup/" exact component={Signup} />
+        <Route path="/play/" exact component={GameContainer} />
+        <Route path="/stats/" exact component={StatsContainer} />
+        <Route path="/game/" exact component={ScoreBoardContainer} />
       </div>
     </Router>
   </Provider>

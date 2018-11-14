@@ -25,4 +25,39 @@ and (orientation : portrait) {
     border: 2px solid black;
   }
 
+  .player-picker{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    border: 2px solid black;
+    padding: 2rem;
+    overflow-x: scroll;
+  }
+
+  .icon{
+    min-width: 200px;
+    height: 200px;
+    background-color: black;
+    color: white;
+    border-radius: 100px;
+    text-align: center;
+    line-height: 200px;
+  }
+
+  .button{
+    background-color: black;
+    color: white;
+  }
+
+  .scoreboard--base{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .scoreboard--base .row{
+    border: 1px solid black;
+    height: 100px;
+  }
+
 }

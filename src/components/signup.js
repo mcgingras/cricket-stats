@@ -17,7 +17,7 @@ export default class Signup extends Component {
     var name     = this.name.value;
 
     var database = firebase.database();
-    database.ref('players/2').set({
+    database.ref('players/14').set({
       name: name,
       username: username
     });

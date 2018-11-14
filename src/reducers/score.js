@@ -1,8 +1,6 @@
-// TODO: make the types global
-
-const players = (state = [], action) => {
+const score = (state = {}, action) => {
   switch (action.type) {
-    case 'ADD_PLAYER':
+    case 'UPDATE_SCORE':
       // check if players user name exist, or should we do this at validation level?
       // do we even need redux for this? What state are we controlling?
       var database = firebase.database();
@@ -18,4 +16,4 @@ const players = (state = [], action) => {
   }
 }
 
-export default players;
+export default score;
