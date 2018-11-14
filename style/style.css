@@ -3,6 +3,10 @@
   padding: 0;
 }
 
+body{
+  padding: 1rem;
+}
+
 @media only screen
 and (min-device-width : 375px)
 and (max-device-width : 812px)
@@ -67,7 +71,10 @@ and (orientation : portrait) {
 
   .scoreboard--box{
     border: 1px solid black;
-    height: 100px;
+    margin: 8px;
+    height: 80px;
+    line-height: 80px;
+    text-align: center;
     width: 100%;
   }
 
