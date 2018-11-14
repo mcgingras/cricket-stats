@@ -7,8 +7,44 @@ class ScoreBoardContainer extends Component {
   constructor(props){
     super(props);
 
+    this.state = {
+      gameOver: false,
+      winner: null
+    }
+
     // state?
     this.renderRows = this.renderRows.bind(this);
+    this.rows = [20,19,18,17,16,15,25];
+  }
+
+  // everytime the score is updated this gets called, making it perfect
+  // for checking the score for a winner
+  componentDidUpdate(){
+    if(!this.state.gameOver){
+      const t1 = Object.values(this.props.score[1]);
+      const t2 = Object.values(this.props.score[2]);
+
+      const t1Score = t1.pop();
+      const t2Score = t2.pop();
+
+      const t1Closed = t1.every((hit) => hit >= 3);
+      const t2Closed = t2.every((hit) => hit >= 3);
+
+      if (t1Closed && (t1Score >= t2Score)) {
+        // before the game is over we want to submit the scores to db
+        this.setState({gameOver: true})
+        this.setState({winner: 1})
+      }
+
+      if(t2Closed && (t2Score >= t1Score)) {
+        this.setState({gameOver: true})
+        this.setState({winner: 2})
+      }
+    }
+  }
+
+  submitScores(){
+    // submit scores to firebase
   }
 
   renderRows(blocks){
@@ -23,18 +59,28 @@ class ScoreBoardContainer extends Component {
   }
 
   render(){
-    console.log(this.props);
+    const gameOver = this.state.gameOver;
     return(
-      <div className="scoreboard--base">
-        <div className="row">
-          <div className="scoreboard--title">{this.props.teams[0]}</div>
-          <div className="scoreboard--title">{this.props.teams[1]}</div>
+      <div>
+      { !gameOver ? (
+        <div className="scoreboard--base">
+          <div className="row">
+            <div className="scoreboard--title">{this.props.teams[0]}</div>
+            <div className="scoreboard--title">{this.props.teams[1]}</div>
+          </div>
+          {this.renderRows(this.rows)}
+          <div className="row">
+            <div className="scoreboard--box">{this.props.score[1]['score']}</div>
+            <div className="scoreboard--box">{this.props.score[2]['score']}</div>
+          </div>
         </div>
-        {this.renderRows([20,19,18,17,16,15,25])}
-        <div className="row">
-          <div className="scoreboard--box">{this.props.score[1]['score']}</div>
-          <div className="scoreboard--box">{this.props.score[2]['score']}</div>
+      ) : (
+        <div>
+        Game Over! Congrats {this.state.winner}
+        {this.submitScores()}
+        <a href="/">home</a>
         </div>
+      )}
       </div>
     )
   }

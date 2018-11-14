@@ -28,9 +28,11 @@ const score = (state = newGame, action) => {
       const team = action.payload.team;
       const hit = action.payload.hit;
 
-      const isClosed = (state[team][hit] >= 3);
+      // can only get points if closed and other team has open slots
+      const oppo = (team == 1) ? 2 : 1;
+      const canGetPoints = (state[team][hit] >= 3 && state[oppo][hit] < 3);
 
-      if (isClosed) {
+      if (canGetPoints) {
         return {
           ...state,
           [team]: {
@@ -42,7 +44,6 @@ const score = (state = newGame, action) => {
       }
 
       else {
-        console.log(team);
         return {
           ...state,
           [team]: {
@@ -60,3 +61,8 @@ const score = (state = newGame, action) => {
 }
 
 export default score;
+
+
+// another way of keeping score would be to have an array [20,20,20...] and remove each time it is hit.
+// checking for win condition is as simple as checking that array is empty and score > oppo
+// does make it difficult to keep track of more detailed stats
