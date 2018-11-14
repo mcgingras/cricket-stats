@@ -7,11 +7,11 @@
   "author": "",
   "license": "ISC",
   "scripts": {
-  "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
-  "prod": "NODE_ENV=production node server.js",
-  "postinstall": "webpack -p",
-  "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test",
-  "test:watch": "npm run test -- --watch"
+    "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
+    "prod": "NODE_ENV=production node server.js",
+    "postinstall": "webpack -p",
+    "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test",
+    "test:watch": "npm run test -- --watch"
   },
   "devDependencies": {
     "babel-core": "^6.2.1",
@@ -30,10 +30,11 @@
   },
   "dependencies": {
     "babel-preset-stage-1": "^6.1.18",
+    "express": "^4.13.3",
     "lodash": "^3.10.1",
+    "path": "^0.12.7",
     "react": "16.3.2",
     "react-dom": "16.3.2",
-    "express": "^4.13.3",
     "react-redux": "5.0.7",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
