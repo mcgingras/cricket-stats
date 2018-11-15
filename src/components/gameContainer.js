@@ -19,6 +19,8 @@ export default class GameContainer extends Component {
         { !isLive ? (
           <div>
             <PlayerPicker />
+            <h6>Don't have an account? Create one below...</h6> 
+            <button>Create User</button>
             <button className="button" onClick={ () => this.setState({live: true}) }>Start Game</button>
           </div>
         ) : (

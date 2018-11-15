@@ -1,7 +1,8 @@
 # CRICKET
 ---
 
-practicing react/redux with a cricket app.
+practicing react/redux/PWA with a cricket app.
+what other PWA standards do I need to incorporate?
 
 TODO:
 practice mode
@@ -11,3 +12,8 @@ refactor redux? (read about better practices first)
 CSS.js (inline css for each component)
 rankings?
 CSS Modules
+
+
+complicated pieces ->
+how to properly structure data
+how to network with firebase and redux

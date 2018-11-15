@@ -3,11 +3,20 @@ import { connect } from 'react-redux';
 import { addPlayerToGame } from '../actions';
 
 
-// TODO: add player to game should update state since state is the 'game' state
 const Icon = ({ player, dispatch }) => {
 
+  const IconStyle = {
+      minWidth: '200px',
+      height: '200px',
+      backgroundColor: 'black',
+      color: 'white',
+      borderRadius: '100px',
+      textAlign: 'center',
+      lineHeight: '200px'
+  }
+
   return (
-    <div className="icon" onClick = { () => dispatch(addPlayerToGame(player.name,2)) }>
+    <div style={IconStyle} onClick = { () => dispatch(addPlayerToGame(player.name,2)) }>
       {player.name}
     </div>
   )

@@ -28,6 +28,12 @@ const score = (state = newGame, action) => {
       const team = action.payload.team;
       const hit = action.payload.hit;
 
+      // const updatedHit = GETTHISFROMFIREBASE;
+      // var database = firebase.database();
+      // database.ref('score/'+team).set({
+      //   [hit]: updatedHit
+      // });
+
       // can only get points if closed and other team has open slots
       const oppo = (team == 1) ? 2 : 1;
       const canGetPoints = (state[team][hit] >= 3 && state[oppo][hit] < 3);
@@ -53,6 +59,10 @@ const score = (state = newGame, action) => {
         };
       }
 
+      return state;
+
+    case 'UNDO_SCORE':
+      // fill this out when we want to undo the score
       return state;
 
     default:
