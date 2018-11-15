@@ -44,7 +44,11 @@ class ScoreBoardContainer extends Component {
   }
 
   submitScores(){
-    // submit scores to firebase
+    // im thinking we need a better way to save this data, but it is working at least
+    console.log(this.props.score[1]);
+    const winner = this.props.teams[this.state.winner];
+    const id = Math.random().toString(36).substring(7);
+    firebase.database().ref('games/' + winner + '/' + id).set(this.props.score[1]);
   }
 
   renderRows(blocks){

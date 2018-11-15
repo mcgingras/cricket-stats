@@ -15,9 +15,11 @@ export default class Signup extends Component {
 
     var username = this.username.value;
     var name     = this.name.value;
+    var id = Math.random().toString(36).substring(7);
+    console.log(id);
 
     var database = firebase.database();
-    database.ref('players/14').set({
+    database.ref('players/'+id).set({
       name: name,
       username: username
     });

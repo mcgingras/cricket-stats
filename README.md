@@ -10,3 +10,4 @@ P2P scoring...? (just need to call firebase in action creator... can have one db
 refactor redux? (read about better practices first)
 CSS.js (inline css for each component)
 rankings?
+CSS Modules

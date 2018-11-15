@@ -21,7 +21,7 @@ const createStoreWithMiddleware = applyMiddleware()(createStore);
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
     <Router>
-      <div>
+      <div style={{height: "100%"}}>
         <Route path="/" exact component={App} />
         <Route path="/signup/" exact component={Signup} />
         <Route path="/play/" exact component={GameContainer} />
