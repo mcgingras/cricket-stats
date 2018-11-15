@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import scuttlebutt from 'redux-scuttlebutt'
 import { createStore, applyMiddleware } from 'redux';
+import scuttlebutt from 'redux-scuttlebutt';
 
 // Components
 import App from './components/app';
@@ -19,9 +19,9 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 const createStoreWithMiddleware = applyMiddleware()(createStore);
 const regularStore = createStore(reducers);
-var scuttleStore = createStore(reducers, scuttlebutt({
-  uri: 'http://localhost:3000'
-}))
+// var scuttleStore = createStore(reducers, scuttlebutt({
+//   uri: 'http://localhost:3000'
+// }))
 
 // <Provider store={createStoreWithMiddleware(reducers)}>
 
