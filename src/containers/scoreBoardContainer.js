@@ -68,7 +68,7 @@ class ScoreBoardContainer extends Component {
   render(){
     const gameOver = this.state.gameOver;
     return(
-      <div>
+      <div style={{height: "100%"}}>
       { !gameOver ? (
         <div className="scoreboard--base">
           <div className="row">

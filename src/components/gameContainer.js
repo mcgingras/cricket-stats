@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import Header from './header';
 import PlayerPicker from './playerPicker';
 import ScoreBoardContainer from '../containers/scoreBoardContainer';
 
@@ -18,9 +19,8 @@ export default class GameContainer extends Component {
       <div>
         { !isLive ? (
           <div>
+            <Header title="Player Select" path="/" right="add" />
             <PlayerPicker />
-            <h6>Don't have an account? Create one below...</h6> 
-            <button>Create User</button>
             <button className="button" onClick={ () => this.setState({live: true}) }>Start Game</button>
           </div>
         ) : (

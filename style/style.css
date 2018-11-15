@@ -4,7 +4,6 @@
 }
 
 body{
-  padding: 1rem;
   height: 100vh;
 }
 
@@ -31,9 +30,9 @@ and (orientation : portrait) {
   .player-picker{
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
     align-items: center;
     width: 100%;
-    border: 2px solid black;
     padding: 2rem;
     overflow-x: scroll;
   }
@@ -47,6 +46,8 @@ and (orientation : portrait) {
   .scoreboard--base{
     display: flex;
     flex-direction: column;
+    padding: 20px;
+    max-height: 100vh;
   }
 
   .scoreboard--base .row{
