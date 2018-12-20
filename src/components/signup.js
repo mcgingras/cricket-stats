@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Header from './header';
 
 export default class Signup extends Component {
   constructor(props){
@@ -10,8 +11,6 @@ export default class Signup extends Component {
 
   createUser() {
     // should add checks to make sure field is good
-
-    console.log('we are creating a user');
 
     var username = this.username.value;
     var name     = this.name.value;
@@ -28,6 +27,7 @@ export default class Signup extends Component {
   render() {
     return (
       <div>
+        <Header path="/" right="add" title="Add Player" />
         <input
           type="text"
           className="input"

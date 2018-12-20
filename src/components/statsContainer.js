@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Header from './header';
 
 
 export default class StatsContainer extends Component {
@@ -9,6 +10,7 @@ export default class StatsContainer extends Component {
   render() {
     return (
       <div>
+      <Header path="/" right="add" title="Leaderboards" />
       stats
       </div>
     );

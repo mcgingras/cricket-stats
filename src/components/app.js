@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { addPlayer } from '../actions';
 
 
+
 class App extends Component {
   constructor(props){
     super(props);

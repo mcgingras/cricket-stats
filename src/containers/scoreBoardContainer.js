@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+// <div className="scoreboard--box">{this.props.score[1]['score']}</div>
+// <div className="scoreboard--box">{this.props.score[2]['score']}</div>
+
 import { updateScore } from '../actions'
 
 class ScoreBoardContainer extends Component {
@@ -12,7 +15,7 @@ class ScoreBoardContainer extends Component {
       winner: null
     }
 
-    // state?
+
     this.renderRows = this.renderRows.bind(this);
     this.rows = [20,19,18,17,16,15,25];
   }
@@ -58,9 +61,9 @@ class ScoreBoardContainer extends Component {
     return blocks.map((block) => {
       return (
         <div className="row">
-          <div className="scoreboard--box" onClick={() => this.props.updateScore(block,1)}>{this.props.score[1][block]}</div>
-          <div className="scoreboard--box" onClick={() => this.props.updateScore(block,2)}>{this.props.score[2][block]}</div>
-        </div>
+         <div className={"scoreboard--box scoreboard--box-"+this.props.score[1][block]} onClick={() => this.props.updateScore(block,1)}></div>
+         <div className={"scoreboard--box scoreboard--box-"+this.props.score[2][block]} onClick={() => this.props.updateScore(block,2)}></div>
+       </div>
       )
     })
   }
@@ -76,10 +79,6 @@ class ScoreBoardContainer extends Component {
             <div className="scoreboard--title">{this.props.teams[1]}</div>
           </div>
           {this.renderRows(this.rows)}
-          <div className="row">
-            <div className="scoreboard--box">{this.props.score[1]['score']}</div>
-            <div className="scoreboard--box">{this.props.score[2]['score']}</div>
-          </div>
         </div>
       ) : (
         <div>

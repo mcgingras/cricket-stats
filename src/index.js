@@ -11,6 +11,8 @@ import GameContainer from './components/gameContainer';
 import StatsContainer from './components/statsContainer';
 import ScoreBoardContainer from './containers/scoreBoardContainer';
 
+import Footer from './components/footer';
+
 // Reducers
 import reducers from './reducers';
 
@@ -34,6 +36,7 @@ ReactDOM.render(
         <Route path="/play/" exact component={GameContainer} />
         <Route path="/stats/" exact component={StatsContainer} />
         <Route path="/game/" exact component={ScoreBoardContainer} />
+        <Footer />
       </div>
     </Router>
   </Provider>
