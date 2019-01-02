@@ -25,3 +25,43 @@ export const updateScore = (hit, team) => {
     }
   }
 }
+
+// action creator to load a user on first load. Need this
+// because I want to store the user in global state.
+export const loadUser = (user) => {
+  console.log("adding user to global");
+  return {
+    type: "LOAD_USER",
+    payload: {
+      user: user
+    }
+  }
+}
+
+
+export const acceptInvite = (user) => {
+  return {
+    type: "ACCEPT_INVITE",
+    payload: {
+      user: user
+    }
+  }
+}
+
+export const cancelInvite = (user) => {
+  return {
+    type: "CANCEL_INVITE",
+    payload: {
+      user: user
+    }
+  }
+}
+
+export const declineInvite = (user) => {
+  return {
+    type: "DECLINE_INVITE",
+    payload: {
+      user: user
+    }
+  }
+}

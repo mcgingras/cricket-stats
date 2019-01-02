@@ -10,23 +10,6 @@ class App extends Component {
 
   }
 
-  componentWillMount(){
-    var context = this;
-    var database = firebase.database();
-    database.ref('/liveKey/').once('value').then(function(snapshot) {
-        var key = (snapshot.val()) || null;
-
-        if (key == null) {
-          context.setState({live: false});
-        }
-
-        else{
-          context.setState({key: key.key});
-          context.setState({live: true});
-        }
-    })
-  }
-
   Header = {
     textAlign: "center",
     fontSize: "22px",
@@ -46,19 +29,10 @@ class App extends Component {
     height: "100%"
   }
 
-  Nav = {
-    botton: "0",
-    width: "100%"
-  }
-
   render() {
     return (
       <div style={this.Body}>
         <div style={this.Header}>The Dart League</div>
-        <div style={this.Nav}>
-          <a href="/play"><div style={this.Button}>New Game</div></a>
-          <a href="/stats"><div style={this.Button}>Rankings</div></a>
-        </div>
       </div>
     );
   }

@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
-import scuttlebutt from 'redux-scuttlebutt';
 
 // Components
 import App from './components/app';
@@ -13,6 +12,8 @@ import ScoreBoardContainer from './containers/scoreBoardContainer';
 
 import Footer from './components/footer';
 
+import { loadUser } from './actions'
+
 // Reducers
 import reducers from './reducers';
 
@@ -21,9 +22,17 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 const createStoreWithMiddleware = applyMiddleware()(createStore);
 const regularStore = createStore(reducers);
-// var scuttleStore = createStore(reducers, scuttlebutt({
-//   uri: 'http://localhost:3000'
-// }))
+
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    // run some action creator to make the user global state
+    var email = user.email;
+    var uid = user.uid;
+    regularStore.dispatch(loadUser(user))
+  } else {
+    console.log("no user here");
+  }
+});
 
 // <Provider store={createStoreWithMiddleware(reducers)}>
 

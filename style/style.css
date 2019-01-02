@@ -53,6 +53,8 @@ and (orientation : portrait) {
   .scoreboard--base .row{
     display: flex;
     justify-content: space-between;
+    margin: 0 auto;
+    width: 100%;
   }
 
   .scoreboard--title{
@@ -82,6 +84,10 @@ and (orientation : portrait) {
   .scoreboard--box-2{
     border: 5px solid #E0E0E0;
     background-image: url("two.svg");
+  }
+
+  .header{
+    display: flex;
   }
 
   .footer{

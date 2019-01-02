@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { addPlayerToGame } from '../actions';
 
 
-const Icon = ({ player, dispatch }) => {
+const Icon = ({ player, dispatch, onClick }) => {
 
   const IconContainer = {
     display: 'flex',
@@ -28,9 +28,9 @@ const Icon = ({ player, dispatch }) => {
   }
 
   return (
-    <div style={IconContainer}>
-    <div style={IconAvatar} onClick = { () => dispatch(addPlayerToGame(player.name,2)) }>
-      {player.name.substring(0,1).toUpperCase()}
+    <div style={IconContainer} onClick={onClick}>
+    <div style={IconAvatar}>
+    {player.username}
     </div>
     <h6 style={IconText}>{player.username}</h6>
     </div>

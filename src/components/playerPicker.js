@@ -9,7 +9,7 @@ class PlayerPicker extends Component {
 
     // local state
     this.state = {
-      players: [], // array of all players?
+      players: {}, // array of all players?
       teams: [],
     }
   }
@@ -22,19 +22,33 @@ class PlayerPicker extends Component {
     var database = firebase.database();
     database.ref('/players/').once('value').then(function(snapshot) {
         var players = (snapshot.val()) || null;
-        players = Object.values(players);
-        context.setState({players: [...context.state.players, ...players]})
+        // players = Object.keys(players);
+        context.setState({players: players})
     })
+  }
+
+  addToLobby(player) {
+    const id = Math.random().toString(36).substring(7); // the game ID
+    const uid = this.props.uid;
+    const oid = player;
+
+    // maybe set some global state that this player is searching in the lobby?
+    // add a model to cancel the game request if desired, and then remove it as an action creator.
+    firebase.database().ref('lobby/' + oid).set(uid);
+    // remove from lobby when the game is set TODO
   }
 
   render(){
     return (
       <div>
         <div className="player-picker">
-          {this.state.players.map((player) => {
+          {Object.keys(this.state.players).map((player) => {
+            const playerDetails = this.state.players[player];
+            playerDetails['uid'] = player;
             return ( <Icon
-                      key     = {player.username}
-                      player  = {player}
+                      key     = {playerDetails.email}
+                      player  = {playerDetails}
+                      onClick = {() => {this.addToLobby(player)}}
                        /> )
           })}
         </div>

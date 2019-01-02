@@ -11,7 +11,7 @@ const footerItem = (props) => {
   }
 
   return (
-    <a>
+    <a href={"/"+props.title}>
       <div style={logo}>
       </div>
 

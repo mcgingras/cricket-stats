@@ -74,9 +74,10 @@ class ScoreBoardContainer extends Component {
       <div style={{height: "100%"}}>
       { !gameOver ? (
         <div className="scoreboard--base">
-          <div className="row">
-            <div className="scoreboard--title">{this.props.teams[0]}</div>
-            <div className="scoreboard--title">{this.props.teams[1]}</div>
+          <div className="header">
+            <div className="scoreboard--title">{this.props.score[1]['score']}</div>
+            <div className="scoreboard--title">{this.props.gameId}</div>
+            <div className="scoreboard--title">{this.props.score[2]['score']}</div>
           </div>
           {this.renderRows(this.rows)}
         </div>
