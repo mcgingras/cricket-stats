@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 import { connect } from 'react-redux';
-import { loadUser } from '../actions';
 
 import Header from './header';
 import PlayerPicker from './playerPicker';
@@ -34,29 +33,29 @@ class GameContainer extends Component {
     let lobby = firebase.database().ref('lobby/');
     lobby.on('value', function(snapshot) {
       const games = snapshot.val() || null;
-      console.log(games);
-      if (uid in games){
-        const oid = games[uid]
-        ctx.setState({
-          invite: oid
-        })
+      if(games != null){
+        if (uid in games){
+          const oid = games[uid]
+          ctx.setState({
+            invite: oid
+          })
+        }
       }
     });
   }
 
   searchGames(uid){
     let ctx = this;
-    console.log("searching for games " + uid);
     let games = firebase.database().ref('games/');
     games.on('value', function(snapshot) {
       const gameList = snapshot.val() || null;
-      console.log(gameList);
-      if (uid in gameList){
-        const oid = games[uid]
-        ctx.setState({
-          live: true
-        })
-        firebase.database().ref('games/' + uid).set(null);
+      if(gameList != null){
+        if (uid in gameList){
+          const oid = games[uid]
+          ctx.setState({
+            live: true
+          })
+        }
       }
     });
   }
@@ -64,12 +63,11 @@ class GameContainer extends Component {
 
   // removes the game from the lobby (since it is now live)
   joinGame(oid){
+    const gameid = Math.random().toString(36).substring(7);
+    const uid = this.props.global;
     firebase.database().ref('lobby/' + this.props.global).set(null);
     this.setState({ live: true });
-    this.setState({ gameId: 1 }); // how to communicate that to the other one?
-    firebase.database().ref('games/' + oid).set(this.props.global);
-
-    // add game to firebase
+    this.setState({ gameId: gameid }); // how to communicate that to the other one?
   }
 
 
@@ -103,7 +101,7 @@ class GameContainer extends Component {
             <button className="button" onClick={ () => this.setState({live: true}) }>Start Game</button>
           </div>
         ) : (
-          <ScoreBoardContainer gameId={this.state.gameId} />
+          <ScoreBoardContainer gameId={this.state.gameId} uid={this.props.global} oid={this.state.invite} />
         )}
       </div>
     );

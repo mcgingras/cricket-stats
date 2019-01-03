@@ -1,3 +1,13 @@
+var firebase = require('firebase');
+var app = firebase.initializeApp({
+  apiKey: "AIzaSyCfoQ6hKBYJiJpSHzr48EZtP4YroOndvbI",
+  authDomain: "cricket-63fe4.firebaseapp.com",
+  databaseURL: "https://cricket-63fe4.firebaseio.com",
+  projectId: "cricket-63fe4",
+  storageBucket: "cricket-63fe4.appspot.com",
+  messagingSenderId: "287166849686"
+});
+
 const newGame = {
   1: {
     20: 0,
@@ -25,38 +35,40 @@ const score = (state = newGame, action) => {
   switch (action.type) {
     case 'UPDATE_SCORE':
       console.log("NEW SCORE!");
+
       const team = action.payload.team;
       const hit = action.payload.hit;
-
-      // const updatedHit = GETTHISFROMFIREBASE;
-      // var database = firebase.database();
-      // database.ref('score/'+team).set({
-      //   [hit]: updatedHit
-      // });
+      const gid = action.payload.gameId;
 
       // can only get points if closed and other team has open slots
       const oppo = (team == 1) ? 2 : 1;
       const canGetPoints = (state[team][hit] >= 3 && state[oppo][hit] < 3);
 
       if (canGetPoints) {
-        return {
+        let s = {
           ...state,
           [team]: {
             ...state[team],
             [hit]: state[team][hit] += 1,
             score: state[team]['score'] += hit
           }
-        };
+        }
+        
+        firebase.database().ref('games/' + gid).update(s);
+        return s;
       }
 
       else {
-        return {
+        let s = {
           ...state,
           [team]: {
             ...state[team],
             [hit]: state[team][hit]+=1
           }
         };
+
+        firebase.database().ref('games/' + gid).update(s);
+        return s;
       }
 
       return state;

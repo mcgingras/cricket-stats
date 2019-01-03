@@ -28,7 +28,6 @@ class PlayerPicker extends Component {
   }
 
   addToLobby(player) {
-    const id = Math.random().toString(36).substring(7); // the game ID
     const uid = this.props.uid;
     const oid = player;
 

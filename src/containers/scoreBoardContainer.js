@@ -50,19 +50,31 @@ class ScoreBoardContainer extends Component {
   Submits the score once the game is over
   */
   submitScores(){
-    console.log(this.props.score[1]);
     const winner = this.props.teams[this.state.winner];
     const id = Math.random().toString(36).substring(7);
-    firebase.database().ref('games/' + winner + '/' + id).set(this.props.score[1]);
+    firebase.database().ref('stats/' + winner + '/' + id).set(this.props.score[winner]);
   }
+
+  watchScores(gid){
+    let score = firebase.database().ref('games/' + gid);
+    score.on('value', (snapshot) => {
+      const pts = snapshot.val() || null;
+      console.log(pts);
+    })
+  }
+
 
 
   renderRows(blocks){
     return blocks.map((block) => {
       return (
         <div className="row">
-         <div className={"scoreboard--box scoreboard--box-"+this.props.score[1][block]} onClick={() => this.props.updateScore(block,1)}></div>
-         <div className={"scoreboard--box scoreboard--box-"+this.props.score[2][block]} onClick={() => this.props.updateScore(block,2)}></div>
+         <div className={"scoreboard--box scoreboard--box-"+this.props.score[1][block]}
+              onClick={() => this.props.updateScore(block,1,this.props.gameId)}>
+        </div>
+         <div className={"scoreboard--box scoreboard--box-"+this.props.score[2][block]}
+              onClick={() => this.props.updateScore(block,2,this.props.gameId)}>
+        </div>
        </div>
       )
     })
@@ -70,6 +82,7 @@ class ScoreBoardContainer extends Component {
 
   render(){
     const gameOver = this.state.gameOver;
+    {this.watchScores(this.props.gameId)}
     return(
       <div style={{height: "100%"}}>
       { !gameOver ? (
@@ -102,7 +115,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    updateScore: (hit,team) => dispatch(updateScore(hit,team))
+    updateScore: (hit,team,gameId) => dispatch(updateScore(hit,team,gameId))
   }
 }
 
